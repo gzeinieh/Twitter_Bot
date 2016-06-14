@@ -46,6 +46,7 @@ class MarkovChain:
 
   def __add_source_data(self, str):
     clean_str = self._punctuation_regex.sub(' ', str).replace('\n', " ")
+    clean_str = clean_str.replace('@', "")  # unless if you want to mention people ;)
     tuples = self.__generate_tuple_keys(clean_str.split())
     for t in tuples:
       self.lookup_dict[t[0]].append(t[1])
