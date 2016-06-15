@@ -17,7 +17,7 @@ def limit_handled(cursor):
     while True:
         try:
             yield cursor.next()
-        except tweepy.RateLimitError:
+        except tweepy.RateLimitError: # add another exception
             time.sleep(15 * 60)
 
 
@@ -54,7 +54,7 @@ def get_home_tweets():
     and send last 200 tweet to database
     """
 
-    home_tweets = tweepy.Cursor(api.home_timeline).items(200)
+    home_tweets = limit_handled(tweepy.Cursor(api.home_timeline).items(200))
     out_tweets = [[tweet.id_str, tweet.created_at, tweet.text] for tweet in home_tweets]
 
     conn = sqlite3.connect('tweets.db')

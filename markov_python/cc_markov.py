@@ -17,7 +17,7 @@ class MarkovChain:
   def __init__(self, num_key_words=2):
     self.num_key_words = num_key_words
     self.lookup_dict = defaultdict(list)
-    self._punctuation_regex = re.compile('[,.!;\?\:\-\[\]]+\s')
+    self._punctuation_regex = re.compile('[)(",.!;\?\:\-\[\]]+\s')
     self._seeded = False
     self.__seed_me()
 
@@ -46,7 +46,19 @@ class MarkovChain:
 
   def __add_source_data(self, str):
     clean_str = self._punctuation_regex.sub(' ', str).replace('\n', " ")
-    clean_str = clean_str.replace('@', "")  # unless if you want to mention people ;)
+    # remove specified special charcters only the end of words
+    clean_str = clean_str.replace('_', " ")
+    # remove '_' everywhere
+
+    #clean_str = clean_str.replace('@', "at\'")
+    #  make the tag unfuctional
+    #' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)"," ",x).split())
+    #  removes everything
+
+    clean_str = ' '.join(re.sub("(@[A-Za-z0-9]+)|(\S+\u2026)", " ", clean_str).split())
+    # remove tag and broken links
+
+
     tuples = self.__generate_tuple_keys(clean_str.split())
     for t in tuples:
       self.lookup_dict[t[0]].append(t[1])

@@ -1,5 +1,7 @@
 from markov_python.cc_markov import MarkovChain
 import sqlite3
+from datetime import datetime
+
 
 
 
@@ -22,7 +24,7 @@ all_status = []
 for i in range(int(num_rows/50)):
     all_status.append(" ".join(mk.generate_text(20)))
 
-with open("data/update_status.txt", 'wt') as f:
+with open("data/update_status_" + str(datetime.today()) + ".txt", 'wt', encoding='utf-8') as f:
     for status in all_status:
         f.write(status)
         f.write("\n")
