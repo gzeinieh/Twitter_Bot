@@ -3,12 +3,12 @@
 ## Twitter  
 tweepy python package to collect data from user's home page, specific user, or live listening (search by word)  
 get a list of user's friends names  
-follow other users 
+follow other users  
 update status 
 
 
 ## Markov Chain
-Explained here: http://setosa.io/ev/markov-chains/
+Explained here: http://setosa.io/ev/markov-chains/  
 update cleaning part in the markov chain generator according to your needs 
 
 ## sqlite3
