@@ -14,3 +14,4 @@ for line in f:
         api.update_status(status=line)
         time.sleep(900)  # Tweet every 15 minutes
 
+# python3 update_status.py twitter/data/update_status_date.txt
