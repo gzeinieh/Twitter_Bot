@@ -70,6 +70,6 @@ class Listener(StreamListener):
             return False
 
 
-twitterStream = Stream(auth, Listener(filter_by="#Buffon", time_limit=1))
-twitterStream.filter(track=["#Buffon"])
+twitterStream = Stream(auth, Listener(filter_by="germany", time_limit=2))
+twitterStream.filter(track=["germany"])
 # twitterStream.filter(track=["azzurri"], async = True) # will run on a new thread
